@@ -21,6 +21,7 @@
 # For more info on psutil, see https://pythonhosted.org/psutil/
 #
 # Import libraries
+import sys
 import os                               # fileCheck, tries to determine distribution
 import re                               # used by CPU
 import uuid                             # mac address
@@ -33,6 +34,12 @@ import json                             # json
 import argparse                         # handle command line args
 #import unittest                         # unit test
 import math
+
+# Ensure code is forward compatible
+PY3 = ((sys.version_info) >= (3,0))
+
+if PY3:
+    xrange = range
 
 #---------------Dictionaries---------------#
 #  https://wiki.archlinux.org/index.php/Color_Bash_Prompt
@@ -118,22 +125,22 @@ logosDict = {'Arch Linux': """{color[1]}
 {color[0]}
 \x1b[0m"""
 ,'Debian':"""{color[0]}
-{color[1]}           _sudZUZ#Z#XZo=_        {results[0]}
-{color[1]}        _jmZZ2!!~---~!!X##wx      {results[1]}
-{color[1]}     .<wdP~~            -!YZL,    {results[2]}
-{color[1]}    .mX2'       _xaaa__     XZ[.  {results[3]}
-{color[1]}    oZ[      _jdXY!~?S#wa   ]Xb;  {results[4]}
-{color[1]}   _#e'     .]X2(     ~Xw|  )XXc  {results[5]}
-{color[1]}  .2Z`      ]X[.       xY|  ]oZ(  {results[6]}
-{color[1]}  .2#;      )3k;     _s!~   jXf`  {results[7]}
-{color[0]}   1Z>      -]Xb/    ~    __#2(   {results[8]}
-{color[0]}   -Zo;       +!4ZwerfgnZZXY'     {results[9]}
-{color[0]}    *#[,        ~-?!!!!!!-~       {results[10]}
-{color[0]}     XUb;.                        {results[11]}
-{color[0]}      )YXL,,                      {results[12]}
-{color[0]}        +3#bc,
-{color[0]}          -)SSL,,
-{color[0]}             ~~~~~
+{color[1]}          _,edm$$$$on.           {results[0]}
+{color[1]}       ,d$$$$$$$$$$$$$$e.        {results[1]}
+{color[1]}     ,d$$m\"\"      \"\"\"e$$.\".      {results[2]}
+{color[1]}    ,$$d'             `$$$.      {results[3]}
+{color[1]}  ',$$m      ,edm.     `$$e:     {results[4]}
+{color[1]}  `d$$'    ,$m\"'   .    $$$      {results[5]}
+{color[1]}   $$e     d$'     ,    $$m      {results[6]}
+{color[1]}   $$:     $$.   -    ,e$$'      {results[7]}
+{color[0]}    $$;     Y$d._   _,m$P'       {results[8]}
+{color[0]}    Y$$.   `.`\"Y$$$$P\"'          {results[9]}
+{color[0]}    `$$b                         {results[10]}
+{color[0]}     `Y$$b                       {results[11]}
+{color[0]}       `Y$$.                     {results[12]}
+{color[0]}         `Y$$b.
+{color[0]}           `\"Y$b._
+{color[0]}                `\"\"\"\"
 \x1b[0m"""
 ,'Raspbian':"""{color[0]}
 {color[0]}        .~~.   .~~.      {results[0]}
@@ -380,8 +387,8 @@ class Output(object):
 
 	def detectDistro(self):
 		"""
-		Attempts to determine the distribution and draw the logo. However, if it can't, 
-		then it defaults to 'Linux' and draws a simple linux penguin. 
+		Attempts to determine the distribution and draw the logo. However, if it can't,
+		then it defaults to 'Linux' and draws a simple linux penguin.
 		"""
 		dist = _platform
 		if dist == 'darwin':
@@ -558,7 +565,7 @@ class IP(object):
 			ip = socket.gethostbyname(host)
 		except:
 			print('Error in IP()')
-		
+
 		self.key = 'IP'
 		self.value = ip + ' / ' + mac.upper()
 

@@ -14,12 +14,8 @@ PyArchey
     :target: https://pypi.python.org/pypi/pyarchey/
     :alt: License
 
-This is based off the ``archey`` command (which is also python) distributed by various 
-linux, unix, and osx package managers. In order to avoid a naming conflict between them, 
-I called this ``pyarchey``.
-
-Currently, ``pyarchey`` supports logos for Arch, Fedora, LinuxMint, Ubuntu, SUSE, Debian, 
-Raspbian, Gentoo, OpenBSD, generic Linux, and Slackware.
+This is my fork of walchko's pyarchey repo with some customisations I wanted
+to add.
 
 ::
 
